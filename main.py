@@ -18,13 +18,24 @@ load_dotenv()
 app = FastAPI()
 
 # --- CORS Configuration ---
+
+origins = [
+    "http://localhost:3000",
+    "https://hg-ai-resume-builder.vercel.app",
+    "https://*.vercel.app",
+    "https://*.railway.app",
+]
+
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "https://hg-ai-resume-builder.vercel.app"],  # Replace with your Vercel URL
+    # allow_origins=["http://localhost:3000", "https://hg-ai-resume-builder.vercel.app"],  # Replace with your Vercel URL
+    allow_origins=origins,
     # allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    
 )
 
 # --- Environment Variable Loading ---
